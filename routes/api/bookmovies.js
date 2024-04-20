@@ -62,12 +62,6 @@ router.get('/bookmovies_alldata',async function(req, res, next) {
 // 更新一条数据
 // 定义 PATCH 路由用于更新数据
 router.patch('/updata_one', upload.single('img_file'),async (req, res) => {
-// 存储ID
-  // console.log(req.query);
-  // 存储数据
-  // console.log(req.body);
-
- 
   try {
 
     const _id = req.query._id;
@@ -119,7 +113,7 @@ router.delete('/deleteone_bookmovies/:_id',async function(req, res, next) {
 // 添加一条数据
 router.post('/book_movies',upload.single('img_file'), (req, res) => {
   //插入数据库
-  console.log(req.file.path);
+  // console.log(req.file.path);
 
 const currentTime = Date.now();
 const new_img_path = req.file.path.slice(7);

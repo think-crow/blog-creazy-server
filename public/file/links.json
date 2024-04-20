@@ -1,0 +1,84 @@
+{
+    "tools": [
+      {
+        "id":"1",
+        "title": "Navicat",
+        "url": "https://gitee.com/creazy_future/navicate.git",
+        "description": "- 数据库管理工具"
+      },
+      {
+        "id":"2",
+        "title": "office-2021",
+        "url": "https://gitee.com/creazy_future/office-2021.git",
+        "description": "- 好用的办公软件"
+      },
+      {
+        "id":"3",
+        "title": "Typora破解版",
+        "url": "https://gitee.com/creazy_future/typora-cracked-version.git",
+        "description": "Typora 一款Markdown 编辑器和阅读器"
+      },
+      {
+        "id":"4",
+        "title": "明朝那些事儿",
+        "url": "https://gitee.com/creazy_future/history.git",
+        "description": "-历史故事书：明朝那些事儿  作者：当年明月   推荐"
+      },
+      {
+        "id":"5",
+        "title": "FTP免费软件",
+        "url": "https://gitee.com/creazy_future/ftp-software.git",
+        "description": "FTP软件-FileZilla-华为官网下载"
+      },
+      {
+        "id":"5",
+        "title": "Xshell6免费软件",
+        "url": "https://gitee.com/creazy_future/xshell6-cracked-version.git",
+        "description": "Xshell6破解版软件"
+      }
+  
+      
+      
+
+    ],
+    "bolg": [
+
+      {
+        "name": "谢益辉",
+        "url": "https://yihui.org/",
+        "description": "学历很高、网站界面舒适、很多文章挺有见解"
+      },
+      {
+        "name": "阮一峰",
+        "url": "https://www.ruanyifeng.com/",
+        "description": "web前辈，著有书籍：未来世界幸存者！"
+      },
+      {
+        "name": "甘小蔗",
+        "url": "https://gxzv.com/",
+        "description": "2002年的男孩，远超同龄人的项目经验！有商业性质，小同学慎重！"
+      },
+  
+      {
+        "name": "周易",
+        "url": "https://www.zhouyi.run/#/index",
+        "description": "一个开源vue3+node+mongodb的个人博客项目  Loading参考的他的！"
+      },
+      {
+        "name": "孤斗",
+        "url": "https://d-d.design/",
+        "description": "点击：關於我  和按F12挺有意思 哈哈哈!   引流账号，暂不做说明"
+      },
+      {
+        "name": "网站标题挺喜欢！",
+        "url": "https://web.archive.org/web/20060509172425/http://huxinxuan.blogchina.com/",
+        "description": "网站标题：开个门，进来！"
+      },
+      {
+        "name": "糊涂说：受谢益辉影响人之一",
+        "url": "https://hutusi.com/",
+        "description": "引流账号：暂不做说明"
+      }
+
+    ]
+}
