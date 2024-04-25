@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 const NotePapersSchema = new mongoose.Schema({
-
+     _id:{
+          type:String,
+         },
      content:{
       type:String,
      },

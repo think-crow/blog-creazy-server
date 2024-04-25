@@ -65,6 +65,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   }
 //   next();
 // });
+var visitorsCreate = require('./middlewares/actionLogMiddleware');
+app.use(visitorsCreate);
+
 var useragent = require('express-useragent');
 app.use(useragent.express());
 // 记录访问者信息   ipinfo可以解析ip归属地
