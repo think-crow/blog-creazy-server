@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const ArticleSchema = new mongoose.Schema({
+   _id:{
+      type:String,
+     },
    category:{
     type:String,
    },

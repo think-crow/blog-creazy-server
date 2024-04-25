@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const TopicsSchema = new mongoose.Schema({
+   _id:{
+      type:String,
+     },
 
    title:{
       type:String,
@@ -15,7 +18,7 @@ const TopicsSchema = new mongoose.Schema({
      
 });
 
-const TopicsModel = mongoose.model('topics',TopicsSchema);
+   const TopicsModel = mongoose.model('topics',TopicsSchema);
 
-// 暴漏模型对象
-module.exports = TopicsModel;
+   // 暴漏模型对象
+   module.exports = TopicsModel;

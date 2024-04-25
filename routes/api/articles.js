@@ -5,10 +5,10 @@ const ArticleModel = require('../../models/ArticleModel');
 
 router.get('/article_data', async function(req, res, next) {
   try {
+    console.log(req.headers);
     if (req.query._id) {
       // 如果存在 ID 参数，则查询单条数据
       const result = await ArticleModel.findById(req.query._id).exec();
-
       if (result) {
         let prevArticle = null;
         let nextArticle = null;
@@ -23,7 +23,7 @@ router.get('/article_data', async function(req, res, next) {
           }
         res.json({result, prevArticle, nextArticle});
       } else {
-        res.status(404).send('未找到对应的数据');
+        res.status(404).send('404了未找到对应的数据');
       }
     } else {
       const category = req.query.category || "all";
