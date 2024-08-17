@@ -10,7 +10,7 @@
         "id":"2",
         "title": "office-2021",
         "url": "https://gitee.com/creazy_future/office-2021.git",
-        "description": "- 好用的办公软件"
+        "description": "- 好用的办公软件(这个不要下载了，上传时发现用于破解的软件被winsdows当作病毒删除了！)"
       },
       {
         "id":"3",
@@ -31,10 +31,16 @@
         "description": "FTP软件-FileZilla-华为官网下载"
       },
       {
-        "id":"5",
+        "id":"6",
         "title": "Xshell6免费软件",
         "url": "https://gitee.com/creazy_future/xshell6-cracked-version.git",
         "description": "Xshell6破解版软件"
+      },
+      {
+        "id":"7",
+        "title": "vmware",
+        "url": "https://github.com/201853910/VMwareWorkstation",
+        "description": "用户'201853910'的VMwareWorkstation安装包  （会报错缺失msvcp140：https://www.rwany.net/uploads/soft/msvcp140.rar 直接下载缺失的dll，然后拷贝到软件安装目录即可）"
       }
   
       

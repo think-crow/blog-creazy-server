@@ -26,7 +26,13 @@ router.get('/topics_data',async function(req, res, next) {
 router.get('/topics_alldata',authenticateToken, async function(req, res, next) {
   const category  = req.query.category || "all"; 
   const query = category !== "all" ? { category: category } : {}; 
-
+  //   try {
+  //   const result = await TopicsModel.updateMany({}, { $set: { visible: true } });
+  //   console.log("数据迁移成功");
+  // } catch (err) {
+  //   console.error("迁移数据失败：" + err);
+  // }
+  // Object.assign(query, { visible: true });
   if (req.query._id) {
     // 如果存在 ID 参数，则查询单条数据
     await TopicsModel.findById(req.query._id).then((result) => {

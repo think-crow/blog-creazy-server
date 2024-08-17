@@ -5,7 +5,7 @@ const ArticleModel = require('../../models/ArticleModel');
 const authenticateToken = require('../../middlewares/authenticateToken'); // 根据实际文件路径调整
 
 router.get('/article_data', async function(req, res, next) {
-  //为所有文章添加visible字段
+  // 为所有文章添加visible字段
   // try {
   //   const result = await ArticleModel.updateMany({}, { $set: { visible: true } });
   //   console.log("数据迁移成功");
