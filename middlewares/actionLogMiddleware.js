@@ -5,10 +5,45 @@ const geoip = require('geoip-lite');
 
 // IP地址解析
 
+// function parseIP(clientIp) {
+//     return new Promise((resolve, reject) => {
+//         request(
+//             `https://opendata.baidu.com/api.php?query=${encodeURIComponent(clientIp)}&co=&resource_id=6006&oe=utf8`,
+//             { method: 'GET' },
+//             function (error, response, body) {
+//                 if (error) {
+//                     reject(error);
+//                     return;
+//                 }
+
+//                 try {
+//                     const parsedBody = JSON.parse(body);
+//                     if (parsedBody.status !== '0') { // 确保响应状态是 '0'，表示没有错误
+//                         reject(new Error('Failed to fetch location'));
+//                         return;
+//                     }
+//                     console.log(parsedBody);
+//                     // 从响应中安全地提取 location
+//                     const location = parsedBody.data && parsedBody.data[0] && parsedBody.data[0].location ? parsedBody.data[0].location : '-';
+                  
+//                     resolve(location);
+//                 } catch (e) {
+//                     reject(e);
+//                 }
+//             }
+//         );
+//     });}
+
+
 function parseIP(clientIp) {
     return new Promise((resolve, reject) => {
+        const apiKey = 'I3NBZ-VX6ET-ESKXQ-LUF4H-MKBC6-KNF3J'; // 使用你的实际密钥
+        const ipAddress = '115.53.124.74'; // 如果不需要指定 IP，可以将其删除
+        // console.log(ipAddress);
+        
+        const url = `https://apis.map.qq.com/ws/location/v1/ip?ip=${ipAddress}&key=${apiKey}`;
         request(
-            `https://opendata.baidu.com/api.php?query=${encodeURIComponent(clientIp)}&co=&resource_id=6006&oe=utf8`,
+            url,
             { method: 'GET' },
             function (error, response, body) {
                 if (error) {
@@ -18,21 +53,35 @@ function parseIP(clientIp) {
 
                 try {
                     const parsedBody = JSON.parse(body);
-                    if (parsedBody.status !== '0') { // 确保响应状态是 '0'，表示没有错误
+                    if (parsedBody.status !== 0) { // 确保响应状态是 '0'，表示没有错误
+                        console.error('API error:', parsedBody.message);
                         reject(new Error('Failed to fetch location'));
                         return;
                     }
                     // console.log(parsedBody);
                     // 从响应中安全地提取 location
-                    const location = parsedBody.data && parsedBody.data[0] && parsedBody.data[0].location ? parsedBody.data[0].location : '-';
-                  
-                    resolve(location);
+                    // 拼接成一个用空格隔开的字符串
+                    // const result = [parsedBody.result?.ad_info?.nation, parsedBody.result?.ad_info?.province, parsedBody.result?.ad_info?.city, parsedBody.result?.ad_info?.district].filter(Boolean).join(' ');
+                    const location = parsedBody.result?.location;
+                    const adInfo = parsedBody.result?.ad_info;
+    
+                    const result = [
+                      
+                        adInfo?.nation,
+                        adInfo?.province,
+                        adInfo?.city,
+                        adInfo?.district,
+                        `Lat ${location?.lat || 'N/A'}, Lng ${location?.lng || 'N/A'}`
+                    ].filter(Boolean).join(' ');
+                //   console.log(result);
+                    resolve(result);
                 } catch (e) {
                     reject(e);
                 }
             }
         );
     });}
+
 
 // 获取公共IP地址
 function getPublicIP(req) {
@@ -68,7 +117,7 @@ const visitorsCreate = [
 
             const location = geoip.lookup(clientIP);
 // console.log(location);
-            const address = await parseIP(clientIP);
+            const address = await parseIP(clientIP).then(result => result).catch(error => console.error('Failed to parse IP:', error));
             const equipment = u.getBrowser().name ? `${u.getBrowser().name}.v${u.getBrowser().major}` : '未知';
             const today = new Date().toISOString().split('T')[0]; // 获取今天的日期
             const today1 = new Date() 

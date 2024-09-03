@@ -189,6 +189,10 @@ Build Info: {
 4、前端增加404页面
 5、增加留言提交接口（用于hugo主题博客提交信息）	
 
+20240904
+1、更新ip定位为腾讯位置服务（每日有1W条免费额度！相对上一个准确很多）
+地址：https://lbs.qq.com/service/webService/webServiceGuide/position/webServiceIp
+API：https://apis.map.qq.com/ws/location/v1/ip
 
 	
 	
