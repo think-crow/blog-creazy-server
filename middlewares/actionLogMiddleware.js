@@ -38,7 +38,7 @@ const geoip = require('geoip-lite');
 function parseIP(clientIp) {
     return new Promise((resolve, reject) => {
         const apiKey = 'I3NBZ-VX6ET-ESKXQ-LUF4H-MKBC6-KNF3J'; // 使用你的实际密钥
-        const ipAddress = '115.53.124.74'; // 如果不需要指定 IP，可以将其删除
+        const ipAddress = encodeURIComponent(clientIp); // 如果不需要指定 IP，可以将其删除
         // console.log(ipAddress);
         
         const url = `https://apis.map.qq.com/ws/location/v1/ip?ip=${ipAddress}&key=${apiKey}`;
