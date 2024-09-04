@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const ContactsModel = require('../../models/Contact');
 const authenticateToken = require('../../middlewares/authenticateToken');
-
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 
 
 // // 更新提交数据
@@ -38,7 +38,7 @@ router.post('/contact', async function(req, res, next) {
 });
 
 //后台查询所有数据
-router.get('/contact-data',authenticateToken, async function(req, res, next) {
+router.get('/contact-data',authenticateToken, authorizeRole(['user', 'admin']), async function(req, res, next) {
 
   try {
       const results = await ContactsModel.find().sort({ _id: -1 }).exec();
@@ -51,7 +51,7 @@ router.get('/contact-data',authenticateToken, async function(req, res, next) {
 
 
 
-router.delete('/deleteone-contact/:_id',authenticateToken, async function(req, res, next) {
+router.delete('/deleteone-contact/:_id',authenticateToken, authorizeRole(['user', 'admin']), async function(req, res, next) {
   const _id = req.params._id;
   // console.log(_id);
   try {

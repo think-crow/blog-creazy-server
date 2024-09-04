@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const VisitorsModel = require('../../models/VisitorsModel');
 const authenticateToken = require('../../middlewares/authenticateToken');
-
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 
 
 // // 请求IP访问数据

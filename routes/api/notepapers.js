@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const NotePapersModel = require('../../models/NotePapersModel');
 const authenticateToken = require('../../middlewares/authenticateToken');
-
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 
 // /* 前台便笺请求-数据接口 */
 router.get('/notepapers_data',async function(req, res, next) {
@@ -23,7 +23,7 @@ router.get('/notepapers_data',async function(req, res, next) {
 })
 
 // // 后台请求书影数据
-router.get('/notepapers_alldata',authenticateToken, async function(req, res, next) {
+router.get('/notepapers_alldata',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
   const category  = req.query.category || "all"; 
   const query = category !== "all" ? { category: category } : {}; 
 
@@ -56,7 +56,7 @@ router.get('/notepapers_alldata',authenticateToken, async function(req, res, nex
 })
 
 // // 删除一条
-router.delete('/deleteone_notepapers/:_id',authenticateToken, async function(req, res, next) {
+router.delete('/deleteone_notepapers/:_id',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
   const _id = req.params._id; 
   await NotePapersModel.deleteOne({_id:_id}).then((result)=>{  
     res.json(result);
@@ -67,7 +67,7 @@ router.delete('/deleteone_notepapers/:_id',authenticateToken, async function(req
 
 // // 更新一条数据
 // // 定义 PATCH 路由用于更新数据
-router.patch('/notepapers_updata_one', authenticateToken, async (req, res) => {
+router.patch('/notepapers_updata_one', authenticateToken, authorizeRole(['admin']),async (req, res) => {
   try {
     // const updatedData = req.body; // 前端传递过来的更新数据
     // console.log(req.body);
@@ -82,7 +82,7 @@ router.patch('/notepapers_updata_one', authenticateToken, async (req, res) => {
 });
 
 // 添加一条数据
-router.post('/notepapers',authenticateToken, (req, res) => {
+router.post('/notepapers',authenticateToken, authorizeRole(['admin']),(req, res) => {
 const currentTime = Date.now();
 // console.log({...req.body});
 // res.send("恭喜你，添加成功，我是小小");

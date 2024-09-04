@@ -23,4 +23,6 @@ const jwt = require('jsonwebtoken');
       return res.status(403).json({ error: 'Forbidden', message: '未授权' });
     }
   }
+
+
   module.exports = authenticateToken;

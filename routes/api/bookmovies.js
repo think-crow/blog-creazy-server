@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const fs = require("fs")
 const authenticateToken = require('../../middlewares/authenticateToken');
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 // 处理文件上传
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -34,7 +35,7 @@ router.get('/bookmovies_data',async function(req, res, next) {
 })
 
 // 后台请求书影数据
-router.get('/bookmovies_alldata',authenticateToken, async function(req, res, next) {
+router.get('/bookmovies_alldata',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
   const category  = req.query.category || "all"; 
   const query = category !== "all" ? { category: category } : {}; 
 
@@ -61,7 +62,7 @@ router.get('/bookmovies_alldata',authenticateToken, async function(req, res, nex
 
 // 更新一条数据
 // 定义 PATCH 路由用于更新数据
-router.patch('/updata_one',authenticateToken, upload.single('img_file'),async (req, res) => {
+router.patch('/updata_one',authenticateToken,authorizeRole(['admin']), upload.single('img_file'),async (req, res) => {
   try {
 
     const _id = req.query._id;
@@ -99,7 +100,7 @@ router.patch('/updata_one',authenticateToken, upload.single('img_file'),async (r
 
 
 // 删除一条
-router.delete('/deleteone_bookmovies/:_id',authenticateToken, async function(req, res, next) {
+router.delete('/deleteone_bookmovies/:_id',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
   const _id = req.params._id; 
   await BookMoviesModel.deleteOne({_id:_id}).then((result)=>{  
     res.json(result);
@@ -111,7 +112,7 @@ router.delete('/deleteone_bookmovies/:_id',authenticateToken, async function(req
 
 
 // 添加一条数据
-router.post('/book_movies',authenticateToken, upload.single('img_file'), (req, res) => {
+router.post('/book_movies',authenticateToken,authorizeRole(['admin']), upload.single('img_file'), (req, res) => {
   //插入数据库
   // console.log(req.file.path);
 

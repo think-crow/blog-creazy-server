@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const UsersModel = require('../../models/UsersModel');
 const authenticateToken = require('../../middlewares/authenticateToken');
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -26,7 +27,7 @@ router.post('/login', async (req, res) => {
       }
       // console.log('JWT_SECRET:', process.env.JWT_SECRET);
       // 如果凭据有效，生成JWT
-      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+      const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
   
       // 返回JWT给客户端
       res.json({ token });
@@ -38,7 +39,7 @@ router.post('/login', async (req, res) => {
   });
   
   // 示例的受保护路由，需要认证
-  router.get('/userinfo', authenticateToken, (req, res) => {
+  router.get('/userinfo', authenticateToken,authorizeRole(['admin']), (req, res) => {
     // 此处可进行授权逻辑，例如从数据库获取用户信息
     res.json({ message: '您已访问受保护信息！' });
   });

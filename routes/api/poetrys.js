@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const PoetryModel = require('../../models/PoetryModel');
 const authenticateToken = require('../../middlewares/authenticateToken');
-
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 
 /* 诗集请求-数据接口 */
 router.get('/poetry_data',async function(req, res, next) {
@@ -22,7 +22,7 @@ router.get('/poetry_data',async function(req, res, next) {
 })
 
 // 后台请求书影数据
-router.get('/poetry_alldata',authenticateToken, async function(req, res, next) {
+router.get('/poetry_alldata',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
   const category  = req.query.category || "all"; 
   const query = category !== "all" ? { category: category } : {}; 
 
@@ -48,7 +48,7 @@ router.get('/poetry_alldata',authenticateToken, async function(req, res, next) {
 })
 
 // 删除一条
-router.delete('/deleteone_poetry/:_id',authenticateToken, async function(req, res, next) {
+router.delete('/deleteone_poetry/:_id',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
   const _id = req.params._id; 
   // console.log(req._id);
   await PoetryModel.deleteOne({_id:_id}).then((result)=>{  
@@ -60,7 +60,7 @@ router.delete('/deleteone_poetry/:_id',authenticateToken, async function(req, re
 
 // 更新一条数据
 // 定义 PATCH 路由用于更新数据
-router.patch('/poetry_updata_one',authenticateToken, async (req, res) => {
+router.patch('/poetry_updata_one',authenticateToken, authorizeRole(['admin']),async (req, res) => {
   try {
     const _id = req.query._id;
     // const updatedData = req.body; // 前端传递过来的更新数据
@@ -90,7 +90,7 @@ router.patch('/poetry_updata_one',authenticateToken, async (req, res) => {
 
 
 // 添加一条数据
-router.post('/poetry', (req, res) => {
+router.post('/poetry',authenticateToken, authorizeRole(['admin']), (req, res) => {
 const currentTime = Date.now();
 // console.log({...req.body});
 

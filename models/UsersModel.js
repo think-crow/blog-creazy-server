@@ -5,7 +5,7 @@ const UsersSchema = new mongoose.Schema({
 
     username: { type: String, unique: true, required: true },
     passwordHash: { type: String, required: true },
-  
+    role: { type: String, required: true, enum: ['admin', 'user'] } // 角色
 });
 
 const UsersModel = mongoose.model('users',UsersSchema);

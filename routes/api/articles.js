@@ -3,6 +3,7 @@ const router = express.Router();
 const path = require('path');
 const ArticleModel = require('../../models/ArticleModel');
 const authenticateToken = require('../../middlewares/authenticateToken'); // 根据实际文件路径调整
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 
 router.get('/article_data', async function(req, res, next) {
   // 为所有文章添加visible字段
@@ -51,7 +52,7 @@ router.get('/article_data', async function(req, res, next) {
 
 
 //后台查询所有数据
-router.get('/article_alldata',authenticateToken, async function(req, res, next) {
+router.get('/article_alldata',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
 
   try {
     // console.log(req.query);
@@ -75,7 +76,7 @@ router.get('/article_alldata',authenticateToken, async function(req, res, next) 
 });
 
 // 删除一条
-router.delete('/deleteone_article/:_id',authenticateToken, async function(req, res, next) {
+router.delete('/deleteone_article/:_id',authenticateToken, authorizeRole(['admin']),async function(req, res, next) {
   const _id = req.params._id;
   try {
       // 查询被删除的文章的标题和日期
@@ -91,7 +92,7 @@ router.delete('/deleteone_article/:_id',authenticateToken, async function(req, r
   }
 });
 // 更新一条数据
-router.patch('/article_updata_one',authenticateToken, async (req, res) => {
+router.patch('/article_updata_one',authenticateToken,authorizeRole(['admin']), async (req, res) => {
   try {
    
       // console.log(req);
@@ -110,7 +111,7 @@ router.patch('/article_updata_one',authenticateToken, async (req, res) => {
 
 
 // 添加一条数据
-router.post('/article',authenticateToken, (req, res) => {
+router.post('/article',authenticateToken,authorizeRole(['admin']), (req, res) => {
 const currentTime = Date.now();
 ArticleModel.create({
         ...req.body,

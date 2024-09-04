@@ -4,6 +4,7 @@ const path = require('path');
 const fs = require('fs');
 let myPath = path.resolve(__dirname, '../../public/file/links.json');
 const authenticateToken = require('../../middlewares/authenticateToken');
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 // 定义路由来读取文件数据并发送给前端
 // 定义路由来读取文件数据并发送给前端
 router.get('/links', (req, res) => {

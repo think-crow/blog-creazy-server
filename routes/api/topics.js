@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const TopicsModel = require('../../models/TopicsModel');
 const authenticateToken = require('../../middlewares/authenticateToken');
-
+const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权限
 
 /* 话题请求-数据接口 */
 router.get('/topics_data',async function(req, res, next) {
@@ -23,7 +23,7 @@ router.get('/topics_data',async function(req, res, next) {
 })
 
 // 后台请求书影数据
-router.get('/topics_alldata',authenticateToken, async function(req, res, next) {
+router.get('/topics_alldata',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
   const category  = req.query.category || "all"; 
   const query = category !== "all" ? { category: category } : {}; 
   //   try {
@@ -55,7 +55,7 @@ router.get('/topics_alldata',authenticateToken, async function(req, res, next) {
 })
 
 // 删除一条
-router.delete('/deleteone_topics/:_id',authenticateToken, async function(req, res, next) {
+router.delete('/deleteone_topics/:_id',authenticateToken,authorizeRole(['admin']), async function(req, res, next) {
   const _id = req.params._id; 
   await TopicsModel.deleteOne({_id:_id}).then((result)=>{  
     res.json(result);
@@ -66,7 +66,7 @@ router.delete('/deleteone_topics/:_id',authenticateToken, async function(req, re
 
 // 更新一条数据
 // 定义 PATCH 路由用于更新数据
-router.patch('/topics_updata_one',authenticateToken, async (req, res) => {
+router.patch('/topics_updata_one',authenticateToken, authorizeRole(['admin']),async (req, res) => {
   try {
     // console.log(req.body);
     // 使用 Mongoose 更新文档数据
@@ -79,7 +79,7 @@ router.patch('/topics_updata_one',authenticateToken, async (req, res) => {
 });
 
 // 添加一条数据
-router.post('/topics',authenticateToken, (req, res) => {
+router.post('/topics',authenticateToken,authorizeRole(['admin']), (req, res) => {
 const currentTime = Date.now();
 // console.log({...req.body});
 // res.send("恭喜你，添加成功，我是小小");
