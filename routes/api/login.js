@@ -8,6 +8,7 @@ const authorizeRole = require('../../middlewares/authorizeRole'); // 用户权�
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+
 // 处理用户登录的路由
 router.post('/login', async (req, res) => {
 
@@ -39,7 +40,7 @@ router.post('/login', async (req, res) => {
   });
   
   // 示例的受保护路由，需要认证
-  router.get('/userinfo', authenticateToken,authorizeRole(['admin']), (req, res) => {
+  router.get('/userinfo', authenticateToken,authorizeRole(['admin','user']), (req, res) => {
     // 此处可进行授权逻辑，例如从数据库获取用户信息
     res.json({ message: '您已访问受保护信息！' });
   });

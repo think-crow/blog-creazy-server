@@ -107,6 +107,9 @@ function getPublicIP(req) {
 
 const visitorsCreate = [
     async (req, res, next) => {
+        if (req.path === '/contact' || req.path === '/contact-data') {
+            return next(); // 跳过记录
+        }
         // console.log(req.headers['user-agent']);
         try {
             const clientIP = getPublicIP(req);
