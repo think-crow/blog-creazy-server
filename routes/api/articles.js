@@ -26,11 +26,11 @@ router.get('/article_data', async function(req, res, next) {
         const query = req.query.category !== "all" ? { category: req.query.category } : {};
           const prev = await ArticleModel.findOne({ _id: { $lt: req.query._id },...query ,visible: true}, { title: 1 }).sort({ _id: -1 }).exec();
           if (prev) {
-            prevArticle = prev;
+            nextArticle = prev;
           }
           const next = await ArticleModel.findOne({ _id: { $gt: req.query._id },...query,visible: true }, { title: 1 }).sort({ _id: 1 }).exec();
           if (next) {
-            nextArticle = next;
+             prevArticle = next;
           }
         res.json({result, prevArticle, nextArticle});
       } else {
