@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "66d8938bc9f03fcc711d5e3c",
+    "__v": "0",
+    "passwordHash": "$2b$10$94QD/ET7hOmFZNse.Jo8g.B9twCisDPm1fFOPkr7lfUz/iKuepjWS",
+    "role": "user",
+    "username": "rxl"
+  },
+  {
+    "_id": "66d893a3c9f03fcc711d5e40",
+    "__v": "0",
+    "passwordHash": "$2b$10$ZhOs7oMTnVoRwm/j.RVcZehK/NcLNSLMgK4mY3B652A5RdBzSBmYe",
+    "role": "admin",
+    "username": "rhs"
+  }
+]
