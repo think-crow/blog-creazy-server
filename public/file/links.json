@@ -68,7 +68,7 @@
       {
         "name": "逄金吉",
         "url": "https://jinjipang.com/",
-        "description": " 我是一个无神论者，却有点相信命中注定!(一瞬间的想哭，一段时间一直在解读这个注定！！240424)"
+        "description": " 我是一个无神论者，却有点相信命中注定!(一段时间一直在解读这个注定！！240424)"
       },
       {
         "name": "王勇",
@@ -79,18 +79,18 @@
     
       {
         "name": "周易",
-        "url": "https://www.zhouyi.run/#/index",
+        "url": "https://www.zhouyi.run/",
         "description": "一个开源vue3+node+mongodb的个人博客项目  Loading和ip记录参考的他的！"
-      },
-      {
-        "name": "孤斗",
-        "url": "https://d-d.design/",
-        "description": "点击：關於我  和按F12挺有意思 哈哈哈!   引流账号，暂不做说明"
       },
       {
         "name": "网站标题挺喜欢！",
         "url": "https://web.archive.org/web/20060509172425/http://huxinxuan.blogchina.com/",
         "description": "网站标题：开个门，进来！"
+      },
+      {
+        "name": "保罗·格雷厄姆（Paul Graham）",
+        "url": "https://www.paulgraham.com/",
+        "description": "不敢相信竟然以这种方式看到他的博客，老早就听说他的黑客与画家了！"
       }
   
 
