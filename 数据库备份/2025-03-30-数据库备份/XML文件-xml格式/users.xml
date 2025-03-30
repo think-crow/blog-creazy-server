@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<RECORDS>
+	<RECORD>
+		<_id>66d8938bc9f03fcc711d5e3c</_id>
+		<__v>0</__v>
+		<passwordHash>$2b$10$94QD/ET7hOmFZNse.Jo8g.B9twCisDPm1fFOPkr7lfUz/iKuepjWS</passwordHash>
+		<role>user</role>
+		<username>rxl</username>
+	</RECORD>
+	<RECORD>
+		<_id>66d893a3c9f03fcc711d5e40</_id>
+		<__v>0</__v>
+		<passwordHash>$2b$10$ZhOs7oMTnVoRwm/j.RVcZehK/NcLNSLMgK4mY3B652A5RdBzSBmYe</passwordHash>
+		<role>admin</role>
+		<username>rhs</username>
+	</RECORD>
+</RECORDS>
+
